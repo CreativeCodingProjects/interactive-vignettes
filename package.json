@@ -29,10 +29,11 @@
   },
   "scripts": {
     "dev": "webpack-dev-server --config webpack.config.dev.js --mode=development -d",
-    "build": "run-p prepare copy_p5 copy_ccapture copy_sample_code create_assets_folder",
+    "build": "run-p prepare copy_p5 copy_ccapture copy_sample_code create_assets_folder copy_atom_live_server_script",
     "prepare": "webpack --mode=production",
     "copy_p5": "cpx ./node_modules/p5/lib/p5.min.js ./build/libraries/",
     "copy_ccapture": "cpx ./node_modules/ccapture.js/build/CCapture.all.min.js ./build/libraries/ && cpx ./node_modules/ccapture.js/src/gif.worker.js ./build/libraries/",
+    "copy_atom_live_server_script": "cpx ./sample_code/.atom-live-server.json ./build/",
     "copy_sample_code": "cpx ./sample_code/index.html ./build/ && cpx ./sample_code/my_vignettes.js ./build/",
     "create_assets_folder": "mkdirp ./build/assets"
   },
