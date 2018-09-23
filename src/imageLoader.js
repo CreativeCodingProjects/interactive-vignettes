@@ -1,6 +1,6 @@
 export default class PImageLoader{
 
-  constructor(p5){
+  constructor(){
     this._total_images_to_load = 0;
     this._loaded_images = 0;
     this._images = {};
@@ -19,13 +19,12 @@ export default class PImageLoader{
     }
   }
 
-  draw_image(name, ctx, x, y){
-    ctx.image(this._images[name], x, y);
+  draw_image(name, x, y){
+    image(this._images[name], x, y);
   }
 
-  draw_image_from_sequence(name, frame_lerp, ctx, x, y){
-    let frame = math.floor(frame_lerp*this._image_sequences[name].length);
-    ctx.image(this._image_sequences[name][frame], x, y);
+  draw_image_from_sequence(name, frame, x, y){
+    image(this._image_sequences[name][frame], x, y);
   }
 
   all_images_loaded(){
