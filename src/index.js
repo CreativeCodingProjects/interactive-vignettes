@@ -49,6 +49,6 @@ document.onkeydown = function(e) {
 
 }
 
-window.onkeyrelease = function(oPEvt){
+document.onkeyup = function(oPEvt){
   vignettes.key_released();
 }
