@@ -25,8 +25,6 @@ function scene1_click(){
 
 function scene1_keypress(){
   console.log("scene1 key pressed!");
-  vignettes.go_to_scene(2);
-
 }
 
 
