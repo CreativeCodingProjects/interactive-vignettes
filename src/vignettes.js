@@ -1,10 +1,10 @@
-import ImageLoader from "./imageLoader.js"
+import AssetLoader from "./assetLoader.js"
 
 export default class Vignettes{
 
   constructor(){
     this._scenes = [];
-    this._image_loader = new ImageLoader();
+    this._asset_loader = new AssetLoader();
     this._current_scene = 0;
     this._recording = false;
   }
@@ -14,7 +14,7 @@ export default class Vignettes{
   }
 
   draw(){
-      if(this._scenes.length > 0){
+      if(this._scenes.length > 0 && this._asset_loader.all_assets_loaded()){
         this._scenes[this._current_scene].draw();
       }
 
@@ -41,13 +41,21 @@ export default class Vignettes{
     }
   }
 
+  manually_change_scenes(manually_change){
+    this._manually_change_scenes = manually_change;
+  }
+
+  go_to_scene(scene_number){
+    this._current_scene = scene_number-1;
+  }
+
   key_pressed(){
 
     console.log(keyCode, key);
 
-    if(key == "ArrowRight"){// 'rightArrow'
+    if(key == "ArrowRight" && !this._manually_change_scenes){// 'rightArrow'
         this.increment_current_scene();
-    }else if(key == "ArrowLeft"){// 'leftArrow'
+    }else if(key == "ArrowLeft"  && !this._manually_change_scenes){// 'leftArrow'
         this.decrement_current_scene();
     }else if(key == "r" && !this._recording){// 'r'
         this.begin_recording();
@@ -90,18 +98,27 @@ export default class Vignettes{
     this._recording = false;
   }
 
-  //-------------image loading and displaying------------------
+  //-------------asset loading and displaying------------------
     load_image(name, file_type){
-      this._image_loader.load_image(name, file_type);
+      this._asset_loader.load_image(name, file_type);
     }
     load_image_sequence(name, file_type, sequence_length){
-      this._image_loader.load_image_sequence(name, file_type, sequence_length);
+      this._asset_loader.load_image_sequence(name, file_type, sequence_length);
+    }
+    load_sound(name, file_type){
+      this._asset_loader.load_sound(name, file_type);
     }
     draw_image(name, x, y){
-      this._image_loader.draw_image(name, x, y);
+      this._asset_loader.draw_image(name, x, y);
     }
     draw_image_from_sequence(name, x, y, frame){
-      this._image_loader.draw_image_from_sequence(name, frame, x, y);
+      this._asset_loader.draw_image_from_sequence(name, frame, x, y);
+    }
+    play_sound(name){
+      this._asset_loader.play_sound(name);
+    }
+    stop_sound(name){
+      this._asset_loader.stop_sound(name);
     }
   //-----------------------------------------------------------
 
