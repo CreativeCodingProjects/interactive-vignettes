@@ -18,12 +18,14 @@ window.setup = function() {
 }
 
 window.draw = function() {
+  width  = base_size.x;
+  height = base_size.y;
   background(255);
   vignettes.draw();
 }
 
-window.setup_new_canvas = function(width, height){
-    window.p5Canvas = createCanvas(width, height).canvas;
+window.setup_new_canvas = function(i_width, i_height){
+    window.p5Canvas = createCanvas(i_width, i_height).canvas;
 }
 
 window.mouseClicked = function(){

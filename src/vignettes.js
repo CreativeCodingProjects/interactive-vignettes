@@ -174,7 +174,7 @@ export default class Vignettes{
       this._asset_loader.draw_image(name, x, y);
     }
     draw_image_from_sequence(name, x, y, frame){
-      this._asset_loader.draw_image_from_sequence(name, frame, x, y);
+      this._asset_loader.draw_image_from_sequence(name, x, y, frame);
     }
     play_sound(name){
       this._asset_loader.play_sound(name);

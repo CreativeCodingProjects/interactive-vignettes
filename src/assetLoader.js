@@ -15,7 +15,7 @@ export default class AssetLoader{
 
   load_image_sequence(name, file_type, sequence_length){
     this._total_assets_to_load += sequence_length;
-    for(var i = 0; i < image_count; ++i){
+    for(var i = 0; i < sequence_length; ++i){
       this._image_sequences[name][i] = loadImage("assets/images/"+name+"/"+name+"_"+i+"."+file_type, this.asset_loaded.bind(this));
     }
   }
@@ -29,7 +29,7 @@ export default class AssetLoader{
     image(this._images[name], x, y);
   }
 
-  draw_image_from_sequence(name, frame, x, y){
+  draw_image_from_sequence(name, x, y, frame){
     image(this._image_sequences[name][frame], x, y);
   }
 
@@ -38,7 +38,7 @@ export default class AssetLoader{
   }
 
   stop_sound(name){
-    if ( this._sounds[name].isPlaying() ) { 
+    if ( this._sounds[name].isPlaying() ) {
       this._sounds[name].stop();
     }
   }
