@@ -1,5 +1,5 @@
 function setup_vignettes(vignettes){
-
+  vignettes.scale_to_screen(true);
 }
 
 function setup_scenes(){

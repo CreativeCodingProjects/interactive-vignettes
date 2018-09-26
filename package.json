@@ -4,8 +4,8 @@
   "description": "A small framework built on top of p5js for making little interactive scenes. This framework is a part of the \"Creative Coding projects\" youtube channel.",
   "homepage": "https://www.youtube.com/channel/UCQJBw4IgWV9Tp3CNgT5YtwA",
   "repository": {
-    "type" : "git",
-    "url" : "https://github.com/CreativeCodingProjects/interactive-vignettes.git"
+    "type": "git",
+    "url": "https://github.com/CreativeCodingProjects/interactive-vignettes.git"
   },
   "main": "index.js",
   "keywords": [

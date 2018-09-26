@@ -3,14 +3,18 @@ import {setup_window_variables} from "./windowVariables.js"
 
 //let p = new p5();
 
+let base_size = {x:1280, y:720};
+
 window.setup = function() {
   angleMode(DEGREES);
   imageMode(CENTER);
 
-  let vignettes = new Vignettes();
+  let vignettes = new Vignettes(base_size);
   setup_window_variables(vignettes);
+  setup_new_canvas(base_size.x, base_size.y);
   setup_vignettes(vignettes);
-  setup_new_canvas(1280, 720);
+  setup_scenes(vignettes);
+
 }
 
 window.draw = function() {
@@ -20,11 +24,18 @@ window.draw = function() {
 
 window.setup_new_canvas = function(width, height){
     window.p5Canvas = createCanvas(width, height).canvas;
-    setup_scenes(vignettes);
 }
 
 window.mouseClicked = function(){
   vignettes.click();
+}
+
+window.mousePressed = function(){
+  vignettes.mouse_pressed();
+}
+
+window.mouseReleased = function(){
+  vignettes.mouse_released();
 }
 
 window.mouseDragged = function(){

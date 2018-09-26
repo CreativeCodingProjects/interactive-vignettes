@@ -2,18 +2,49 @@ import AssetLoader from "./assetLoader.js"
 
 export default class Vignettes{
 
-  constructor(){
+  constructor(size){
     this._scenes = [];
     this._asset_loader = new AssetLoader();
     this._current_scene = 0;
     this._recording = false;
+    this._scale_to_screen = false;
+    this._lock_scale = false;
+    this._size = size;
   }
 
   add_scene(scene){
     this._scenes.push(scene);
   }
 
+  scale_to_screen(do_scale){
+    this._scale_to_screen = do_scale;
+    if(do_scale){
+        this.resize();
+        this.start_resizing();
+    }else{
+        this.stop_resizing();
+    }
+  }
+
+  resize(){
+    if(!this._lock_scale && this._scale_to_screen){
+      let scaleW = (window.innerWidth+0.0)/this._size.x;
+      let scaleH = (window.innerHeight+0.0)/this._size.y;
+      setup_new_canvas(min(scaleW, scaleH)*this._size.x, min(scaleW, scaleH)*this._size.y);
+    }
+  }
+
+  start_resizing(){
+    window.addEventListener('resize', this.resize.bind(this));
+  }
+
+  stop_resizing(){
+    window.removeEventListener('resize', this.scale_to_screen.bind(this));
+  }
+
   draw(){
+    push();
+      scale(this.current_scale);
       if(this._scenes.length > 0 && this._asset_loader.all_assets_loaded()){
         this._scenes[this._current_scene].draw();
       }
@@ -21,6 +52,7 @@ export default class Vignettes{
       if(this._recording){
         this.capture_frame();
       }
+    pop();
   }
 
   click(){
@@ -29,16 +61,30 @@ export default class Vignettes{
     }
   }
 
+  mouse_pressed(){
+    this.scale_mouse();
+  }
+
+  mouse_released(){
+  }
+
   mouse_moved(){
+    this.scale_mouse();
     if(this._scenes.length > 0){
       this._scenes[this._current_scene].mouse_moved();
     }
   }
 
   mouse_dragged(){
+    this.scale_mouse();
     if(this._scenes.length > 0){
       this._scenes[this._current_scene].mouse_dragged();
     }
+  }
+
+  scale_mouse(){
+    mouseX = mouseX*(1.0/this.current_scale);
+    mouseY = mouseY*(1.0/this.current_scale);
   }
 
   manually_change_scenes(manually_change){
@@ -82,6 +128,9 @@ export default class Vignettes{
 
   begin_recording(){
     console.log("started recording");
+    this._lock_scale = true;
+    setup_new_canvas(this._size.x, this._size.y);
+
     ccapturer.start();
     this.capture_frame();
     this._recording = true;
@@ -96,6 +145,13 @@ export default class Vignettes{
     ccapturer.stop();
     ccapturer.save();
     this._recording = false;
+
+    this._lock_scale = false;
+    this.resize();
+  }
+
+  get current_scale(){
+    return this._lock_scale ? 1 : width/this._size.x;
   }
 
   //-------------asset loading and displaying------------------
