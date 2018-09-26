@@ -1,6 +1,6 @@
 {
   "name": "interactive-vignettes",
-  "version": "1.0.0",
+  "version": "1.0.3",
   "description": "A small framework built on top of p5js for making little interactive scenes. This framework is a part of the \"Creative Coding projects\" youtube channel.",
   "homepage": "https://www.youtube.com/channel/UCQJBw4IgWV9Tp3CNgT5YtwA",
   "repository": {
