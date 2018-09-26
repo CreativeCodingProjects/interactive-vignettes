@@ -63,9 +63,15 @@ export default class Vignettes{
 
   mouse_pressed(){
     this.scale_mouse();
+    if(this._scenes.length > 0){
+      this._scenes[this._current_scene].mouse_pressed();
+    }
   }
 
   mouse_released(){
+    if(this._scenes.length > 0){
+      this._scenes[this._current_scene].mouse_released();
+    }
   }
 
   mouse_moved(){
