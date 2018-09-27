@@ -157,7 +157,7 @@ export default class Vignettes{
   }
 
   get current_scale(){
-    return this._lock_scale ? 1 : width/this._size.x;
+    return this._lock_scale ? 1 : p5Width/this._size.x;
   }
 
   //-------------asset loading and displaying------------------
