@@ -16,6 +16,7 @@ export default class AssetLoader{
   load_image_sequence(name, file_type, sequence_length){
     this._total_assets_to_load += sequence_length;
     for(var i = 0; i < sequence_length; ++i){
+      this._image_sequences[name] = {};
       this._image_sequences[name][i] = loadImage("assets/images/"+name+"/"+name+"_"+i+"."+file_type, this.asset_loaded.bind(this));
     }
   }
