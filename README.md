@@ -8,7 +8,7 @@ For information on how to get started visit: VIDEO URL GOES HERE
 Installation
 =======
 
-  1. Download Vignettes.zip from: https://github.com/CreativeCodingProjects/interactive-vignettes/releases/latest
+  1. Download Vignettes.zip from: https://github.com/CreativeCodingProjects/interactiveVignettesJS/releases/latest
   2. unzip it and the unzipped folder in a sensible place on your computer
   3. if you don't already have a text editor get one (I recommend Atom as that is what I use in the videos)
   4. install a development server such as atom-live-server
