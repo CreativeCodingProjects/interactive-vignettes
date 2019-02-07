@@ -34,8 +34,11 @@ export default class AssetLoader{
     image(this._image_sequences[name][frame], x, y);
   }
 
-  play_sound(name){
-    this._sounds[name].play();
+  play_sound(name, stop_overlap){
+    stop_overlap = stop_overlap === undefined ? false : stop_overlap;
+    if ( stop_overlap == false || !this._sounds[name].isPlaying() ) {
+      this._sounds[name].play();
+    }
   }
 
   stop_sound(name){

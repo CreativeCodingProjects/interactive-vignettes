@@ -176,8 +176,8 @@ export default class Vignettes{
     draw_image_from_sequence(name, x, y, frame){
       this._asset_loader.draw_image_from_sequence(name, x, y, frame);
     }
-    play_sound(name){
-      this._asset_loader.play_sound(name);
+    play_sound(name, stop_overlap){
+      this._asset_loader.play_sound(name, stop_overlap);
     }
     stop_sound(name){
       this._asset_loader.stop_sound(name);
